@@ -1,18 +1,19 @@
 import {Sequelize} from "sequelize";
 import db from "../config/database.js";
+import Product from "./ProductModel.js";
 
 const {DataTypes} = Sequelize;
 
-const Product = db.define('product', {
+const Category = db.define('category', {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.BIGINT,
-    qty: DataTypes.BIGINT,
 }, {
     freezeTableName:true
 });
 
-export default Product;
+Category.hasMany(Product);
+
+export default Category;
 
 (async()=>{
     await db.sync();

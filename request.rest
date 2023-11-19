@@ -1,0 +1,112 @@
+GET http://localhost:5000/category
+
+###
+GET http://localhost:5000/category/1
+
+###
+POST http://localhost:5000/category
+Content-Type: application/json
+
+{
+    "name": "Pria",
+    "description": "Kategori yang berisi produk fashion pria"
+}
+
+###
+PATCH http://localhost:5000/category/1
+Content-Type: application/json
+
+{
+    "name": "Wanita",
+    "description": "Kategori yang berisi produk fashion wanita"
+}
+
+###
+DELETE http://localhost:5000/category/3
+
+###
+GET http://localhost:5000/product
+
+###
+GET http://localhost:5000/product/1
+
+###
+POST http://localhost:5000/product
+Content-Type: application/json
+
+{
+    "name": "Kemeja Flannel",
+    "description": "Bahannya nyaman",
+    "price": 200000,
+    "qty": 20,
+    "categoryId": 1
+}
+
+###
+PATCH http://localhost:5000/product/1
+Content-Type: application/json
+
+{
+    "name": "Jaket Kanvas",
+    "description": "Terbuat dari kanvas",
+    "price": 300000,
+    "qty": 10,
+    "categoryId": 1
+}
+
+###
+DELETE http://localhost:5000/product/1
+
+###
+GET http://localhost:5000/role
+
+###
+GET http://localhost:5000/role/1
+
+###
+POST http://localhost:5000/role
+Content-Type: application/json
+
+{
+    "name": "Admin"
+}
+
+###
+PATCH http://localhost:5000/role/1
+Content-Type: application/json
+
+{
+    "name": "Buyer"
+}
+
+###
+DELETE http://localhost:5000/role/1
+
+###
+GET http://localhost:5000/user
+
+###
+GET http://localhost:5000/user/1
+
+###
+POST http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "name": "Joko",
+    "email": "joko@gmail.com",
+    "phone": 081111111111,
+}
+
+###
+PATCH http://localhost:5000/user/1
+Content-Type: application/json
+
+{
+    "name": "Budi",
+    "email": "budi@gmail.com",
+    "phone": 081111111111,
+}
+
+###
+DELETE http://localhost:5000/user/1

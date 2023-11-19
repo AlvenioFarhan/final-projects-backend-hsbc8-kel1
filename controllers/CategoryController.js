@@ -1,17 +1,17 @@
-import Product from "../models/ProductModel.js";
+import Category from "../models/CategoryModel.js";
 
-export const getAllProduct = async(req, res) =>{
+export const getAllCategory = async(req, res) =>{
     try {
-        const response = await Product.findAll();
+        const response = await Category.findAll();
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const getProductById = async(req, res) =>{
+export const getCategoryById = async(req, res) =>{
     try {
-        const response = await Product.findOne({
+        const response = await Category.findOne({
             where:{
                 id: req.params.id
             }
@@ -22,36 +22,36 @@ export const getProductById = async(req, res) =>{
     }
 }
 
-export const createProduct = async(req, res) =>{
+export const createCategory = async(req, res) =>{
     try {
-        await Product.create(req.body);
-        res.status(201).json({msg: "Product created"});
+        await Category.create(req.body);
+        res.status(201).json({msg: "Category created"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateProduct = async(req, res) =>{
+export const updateCategory = async(req, res) =>{
     try {
-        await Product.update(req.body, {
+        await Category.update(req.body, {
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Product updated"});
+        res.status(200).json({msg: "Category updated"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteProduct = async(req, res) =>{
+export const deleteCategory = async(req, res) =>{
     try {
-        await Product.destroy({
+        await Category.destroy({
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Product deleted"});
+        res.status(200).json({msg: "Category deleted"});
     } catch (error) {
         console.log(error.message);
     }

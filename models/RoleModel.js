@@ -1,18 +1,18 @@
 import {Sequelize} from "sequelize";
 import db from "../config/database.js";
+import User from "./UserModel.js";
 
 const {DataTypes} = Sequelize;
 
-const Product = db.define('product', {
+const Role = db.define('role', {
     name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    price: DataTypes.BIGINT,
-    qty: DataTypes.BIGINT,
 }, {
     freezeTableName:true
 });
 
-export default Product;
+Role.hasMany(User);
+
+export default Role;
 
 (async()=>{
     await db.sync();

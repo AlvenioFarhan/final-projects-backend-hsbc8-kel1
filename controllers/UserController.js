@@ -1,17 +1,17 @@
-import Product from "../models/ProductModel.js";
+import User from "../models/UserModel.js";
 
-export const getAllProduct = async(req, res) =>{
+export const getAllUser = async(req, res) =>{
     try {
-        const response = await Product.findAll();
+        const response = await User.findAll();
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const getProductById = async(req, res) =>{
+export const getUserById = async(req, res) =>{
     try {
-        const response = await Product.findOne({
+        const response = await User.findOne({
             where:{
                 id: req.params.id
             }
@@ -22,36 +22,36 @@ export const getProductById = async(req, res) =>{
     }
 }
 
-export const createProduct = async(req, res) =>{
+export const createUser = async(req, res) =>{
     try {
-        await Product.create(req.body);
-        res.status(201).json({msg: "Product created"});
+        await User.create(req.body);
+        res.status(201).json({msg: "User created"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateProduct = async(req, res) =>{
+export const updateUser = async(req, res) =>{
     try {
-        await Product.update(req.body, {
+        await User.update(req.body, {
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Product updated"});
+        res.status(200).json({msg: "User updated"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteProduct = async(req, res) =>{
+export const deleteUser = async(req, res) =>{
     try {
-        await Product.destroy({
+        await User.destroy({
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "Product deleted"});
+        res.status(200).json({msg: "User deleted"});
     } catch (error) {
         console.log(error.message);
     }
