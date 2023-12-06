@@ -1,6 +1,7 @@
-import Role from "../models/RoleModel.js";
+const db = require('../models');
+const Role = db.role;
 
-export const getAllRole = async(req, res) =>{
+exports.getAllRole = async(req, res) =>{
     try {
         const response = await Role.findAll();
         res.status(200).json(response);
@@ -9,7 +10,7 @@ export const getAllRole = async(req, res) =>{
     }
 }
 
-export const getRoleById = async(req, res) =>{
+exports.getRoleById = async(req, res) =>{
     try {
         const response = await Role.findOne({
             where:{
@@ -22,7 +23,7 @@ export const getRoleById = async(req, res) =>{
     }
 }
 
-export const createRole = async(req, res) =>{
+exports.createRole = async(req, res) =>{
     try {
         await Role.create(req.body);
         res.status(201).json({msg: "Role created"});
@@ -31,7 +32,7 @@ export const createRole = async(req, res) =>{
     }
 }
 
-export const updateRole = async(req, res) =>{
+exports.updateRole = async(req, res) =>{
     try {
         await Role.update(req.body, {
             where:{
@@ -44,7 +45,7 @@ export const updateRole = async(req, res) =>{
     }
 }
 
-export const deleteRole = async(req, res) =>{
+exports.deleteRole = async(req, res) =>{
     try {
         await Role.destroy({
             where:{

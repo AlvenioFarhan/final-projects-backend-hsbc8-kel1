@@ -1,9 +1,9 @@
-import express from "express";
-import cors from "cors";
-import ProductRoute from "./routes/ProductRoute.js";
-import CategoryRoute from "./routes/CategoryRoute.js";
-import UserRoute from "./routes/UserRoute.js";
-import RoleRoute from "./routes/RoleRoute.js";
+const express = require("express");
+const cors = require("cors");
+const ProductRoute = require("./routes/ProductRoute.js");
+const CategoryRoute = require("./routes/CategoryRoute.js");
+const UserRoute = require("./routes/UserRoute.js");
+const RoleRoute = require("./routes/RoleRoute.js");
 
 const app = express();
 app.use(cors());
@@ -13,5 +13,6 @@ app.use(CategoryRoute);
 app.use(UserRoute);
 app.use(RoleRoute);
 
-
-app.listen(5000, ()=> console.log('Server up and running...'));
+app.listen(5000, () =>
+  console.log("Server up and running on port http://localhost:5000")
+);
