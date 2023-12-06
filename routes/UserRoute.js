@@ -14,5 +14,10 @@ router.get("/user/:id", getUserById);
 router.post("/user", createUser);
 router.patch("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);
+router.get("/users/auth", (req, res) => {
+  return res.status(200).json({
+    message: "Hello world!",
+  });
+});
 
 module.exports = router;
