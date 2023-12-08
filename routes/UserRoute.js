@@ -9,6 +9,9 @@ const {
 
 const router = express.Router();
 
+const { userControllers } = require("../controllers");
+
+router.get("/", userControllers.getUsers);
 router.get("/user", getAllUser);
 router.get("/user/:id", getUserById);
 router.post("/user", createUser);
