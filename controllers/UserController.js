@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.user;
 
-exports.getAllUsers = async (req, res) => {
+exports.getAllUser = async (req, res) => {
   const users = await db.user.findAll({
     attributes: { exclude: ["password"] },
     include: [
