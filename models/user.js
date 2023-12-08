@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       user.belongsTo(models.role, { foreignKey: "roleId" });
-      user.hasMany(models.transaction, { foreignKey: "userId" });
+      user.hasMany(models.transaction, {
+        foreignKey: "userId",
+      });
     }
   }
   user.init(
@@ -23,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
       kodepos: DataTypes.INTEGER,
       tgl_lahir: DataTypes.DATE,
       jenkel: DataTypes.STRING,
-      transactionId: DataTypes.INTEGER,
       roleId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: "user",
+      tableName: "user",
     }
   );
   return user;
