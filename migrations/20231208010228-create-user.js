@@ -17,14 +17,6 @@ module.exports = {
           key: "id",
         },
       },
-      transactionId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "transaction",
-          key: "id",
-        },
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
