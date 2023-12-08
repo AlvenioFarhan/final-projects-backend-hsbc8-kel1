@@ -1,12 +1,12 @@
 const db = require("../models");
 const User = db.user;
 
-exports.getUsers = async (req, res) => {
-  const users = await db.users.findAll({
+exports.getAllUsers = async (req, res) => {
+  const users = await db.user.findAll({
     attributes: { exclude: ["password"] },
     include: [
       {
-        model: db.roles,
+        model: db.role,
       },
     ],
   });
@@ -17,14 +17,14 @@ exports.getUsers = async (req, res) => {
   });
 };
 
-exports.getAllUser = async (req, res) => {
-  try {
-    const response = await User.findAll();
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// exports.getAllUser = async (req, res) => {
+//   try {
+//     const response = await User.findAll();
+//     res.status(200).json(response);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 exports.getUserById = async (req, res) => {
   try {
