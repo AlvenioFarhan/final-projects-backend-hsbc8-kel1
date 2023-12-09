@@ -9,10 +9,10 @@ const {
 
 const router = express.Router();
 
-router.get("/role", getAllRole);
-router.get("/role/:id", getRoleById);
-router.post("/role", createRole);
-router.patch("/role/:id", updateRole);
-router.delete("/role/:id", deleteRole);
+router.get("/", getAllRole);
+router.get("/:id", getRoleById);
+router.post("/", createRole);
+router.patch("/:id", updateRole);
+router.delete("/:id", deleteRole);
 
 module.exports = router;

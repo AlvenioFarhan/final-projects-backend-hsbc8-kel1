@@ -1,5 +1,5 @@
 const db = require("../models");
-const Role = db.role;
+const Role = db.roles;
 
 exports.getAllRole = async (req, res) => {
   try {

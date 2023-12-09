@@ -2,56 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("user", {
+    await queryInterface.createTable("products", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      roleId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "role",
-          key: "id",
-        },
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      description: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      phone: {
+      price: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      kodepos: {
+      qty: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      tgl_lahir: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      jenkel: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      roleId: {
+      categoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "categories",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
@@ -62,12 +42,12 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.addConstraint("user", {
+    await queryInterface.addConstraint("products", {
       type: "foreign key",
-      fields: ["roleId"],
-      name: "users_role_id_fk",
+      fields: ["categoryId"],
+      name: "product_category_id_fk",
       references: {
-        table: "role",
+        table: "categories",
         field: "id",
       },
       onDelete: "CASCADE",
@@ -75,6 +55,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("user");
+    await queryInterface.dropTable("products");
   },
 };

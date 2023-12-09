@@ -1,12 +1,12 @@
 const db = require("../models");
-const User = db.user;
+const User = db.users;
 
 exports.getAllUser = async (req, res) => {
-  const users = await db.user.findAll({
+  const users = await User.findAll({
     attributes: { exclude: ["password"] },
     include: [
       {
-        model: db.role,
+        model: db.roles,
       },
     ],
   });
@@ -33,7 +33,10 @@ exports.getUserById = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json(response);
+    return res.status(200).json({
+      message: "success",
+      data: response,
+    });
   } catch (error) {
     console.log(error.message);
   }

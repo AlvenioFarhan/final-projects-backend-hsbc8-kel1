@@ -1,5 +1,5 @@
 const db = require("../models");
-const Category = db.category;
+const Category = db.categories;
 
 exports.getAllCategory = async (req, res) => {
   try {

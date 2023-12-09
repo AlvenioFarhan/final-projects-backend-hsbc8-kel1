@@ -1,16 +1,15 @@
 const db = require("../models");
-const Transaction = db.transaction;
-const TransactionDetail = db.transaction_detail;
+const Transaction = db.transactions;
+const TransactionDetail = db.transaction_details;
+const { decodeJWT } = require("../utils/utils");
 
 exports.getAllTransaction = async (req, res) => {
   try {
     const response = await Transaction.findAll({
       include: {
         model: TransactionDetail,
-        as: "transaction_detail",
         include: {
-          model: db.product,
-          as: "product",
+          model: db.products,
         },
       },
     });
@@ -22,20 +21,22 @@ exports.getAllTransaction = async (req, res) => {
 
 exports.getTransactionByUserId = async (req, res) => {
   try {
+    const user = decodeJWT(req);
     const response = await Transaction.findAll({
       where: {
-        userId: req.params.userId,
+        userId: user.id,
       },
       include: {
         model: TransactionDetail,
-        as: "transaction_detail",
         include: {
-          model: db.product,
-          as: "product",
+          model: db.products,
         },
       },
     });
-    res.status(200).json(response);
+    res.status(200).json({
+      message: "success",
+      data: response,
+    });
   } catch (error) {
     console.log(error.message);
   }
@@ -49,10 +50,8 @@ exports.getTransactionById = async (req, res) => {
       },
       include: {
         model: TransactionDetail,
-        as: "transaction_detail",
         include: {
-          model: db.product,
-          as: "product",
+          model: db.products,
         },
       },
     });
@@ -71,7 +70,7 @@ exports.createTransaction = async (req, res) => {
 
     const bulkData = await Promise.all(
       req.body.map(async (data) => {
-        const product = await db.product.findOne({
+        const product = await db.products.findOne({
           where: {
             id: data.productId,
           },
@@ -91,9 +90,11 @@ exports.createTransaction = async (req, res) => {
       })
     );
 
+    const user = decodeJWT(req);
+
     const transaction = await Transaction.create({
       // hardcode
-      userId: "1",
+      userId: user.id,
       date: new Date(),
       total_items: transactionMeta.total_items,
       total: transactionMeta.total,

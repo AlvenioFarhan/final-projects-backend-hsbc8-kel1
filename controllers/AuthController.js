@@ -13,7 +13,13 @@ const login = async (req, res) => {
     .findOne({
       where: { email, password },
       raw: true,
+      nest: true,
       attributes: { exclude: "password" },
+      include: [
+        {
+          model: db.roles,
+        },
+      ],
     })
     .then((res) => {
       if (!res) {
