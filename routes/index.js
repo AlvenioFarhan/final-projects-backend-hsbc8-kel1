@@ -8,9 +8,10 @@ const categoryRoutes = require("./CategoryRoute");
 const productRoutes = require("./ProductRoute");
 const transactionRoutes = require("./TransactionRoute");
 const ADMIN_MIDDLEWARE = require("../middleware/admin.middleware");
+const MEMBER_MIDDLEWARE = require("../middleware/member.middleware");
 
 router.use("/auth", authRoutes);
-router.use("/users", [ADMIN_MIDDLEWARE], userRoutes);
+router.use("/users", [MEMBER_MIDDLEWARE], userRoutes);
 router.use("/roles", [ADMIN_MIDDLEWARE], roleRoutes);
 router.use("/categories", categoryRoutes);
 router.use("/products", productRoutes);
