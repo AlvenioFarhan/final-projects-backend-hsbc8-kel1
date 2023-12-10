@@ -1,18 +1,18 @@
-import express from "express";
-import {
-    getAllUser, 
-    getUserById, 
-    createUser,
-    updateUser,
-    deleteUser
-} from "../controllers/UserController.js"
+const express = require("express");
+const {
+  getAllUser,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+} = require("../controllers/UserController");
+const ADMIN_MIDDLEWARE = require("../middleware/admin.middleware.js");
 
 const router = express.Router();
+router.get("/", [ADMIN_MIDDLEWARE], getAllUser);
+router.get("/:id", getUserById);
+router.post("/", createUser);
+router.patch("/:id", updateUser);
+router.delete("/:id", deleteUser);
 
-router.get('/user', getAllUser);
-router.get('/user/:id', getUserById);
-router.post('/user', createUser);
-router.patch('/user/:id', updateUser);
-router.delete('/user/:id', deleteUser);
-
-export default router;
+module.exports = router;
