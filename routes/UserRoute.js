@@ -6,9 +6,10 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/UserController");
+const ADMIN_MIDDLEWARE = require("../middleware/admin.middleware.js");
 
 const router = express.Router();
-router.get("/", getAllUser);
+router.get("/", [ADMIN_MIDDLEWARE], getAllUser);
 router.get("/:id", getUserById);
 router.post("/", createUser);
 router.patch("/:id", updateUser);
